@@ -18,14 +18,9 @@ jobs:
       - run: npm test
           
   checkVersion:
-    name: Check package version
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - name: Check package version
-        uses: technote-space/package-version-check-action@v1
-        with:
-          BRANCH_PREFIX: release/
+      - uses: EndBug/version-check@v1
 
   publish-gpr:
     needs: build
