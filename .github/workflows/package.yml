@@ -14,8 +14,10 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 12
+          
       - name: Version Check
         uses: EndBug/version-check@v2.1.0
+        id: check
         
       - name: Publish package to GPR
         if: steps.check.outputs.changed == 'true'
