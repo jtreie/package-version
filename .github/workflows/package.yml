@@ -16,13 +16,9 @@ jobs:
           node-version: 12
       - run: npm ci
       - run: npm test
-          
-  checkVersion:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: EndBug/version-check@v1
-        with:
-          file-name: ./package-version/package.json
+      - name: Version Check
+        uses: EndBug/version-check@v2.1.0
+
 
   publish-gpr:
     needs: build
