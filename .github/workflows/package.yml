@@ -21,6 +21,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: EndBug/version-check@v1
+        with:
+          file-name: ./package-version/package.json
 
   publish-gpr:
     needs: build
