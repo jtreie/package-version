@@ -19,6 +19,17 @@ jobs:
         uses: EndBug/version-check@v2.1.0
         id: check
         
+      - name: Set up node
+        if: steps.check.outputs.changed == 'true'
+        uses: actions/setup-node@v1
+        with:
+          registry-url: "https://npm.pkg.github.com/"
+          scope: "@endbug"
+
+      - name: Set up gpr
+        if: steps.check.outputs.changed == 'true'
+        run: npm run gpr-setup
+        
       - name: Publish package to GPR
         if: steps.check.outputs.changed == 'true'
         run: npm publish
