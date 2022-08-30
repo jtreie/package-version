@@ -26,6 +26,28 @@ jobs:
         uses: technote-space/package-version-check-action@v1
         with:
           BRANCH_PREFIX: release/
+          
+  package:
+    defaults:
+      run:
+        working-directory: package-verstion
+    needs: [build]
+    runs-on: ubuntu latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 12
+
+      - run: npm ci
+      - run: npm run build
+      - run: npm version prerelease --preid=ci-$GITHUB_RUN_ID --no-git-tag-version
+      - run: npm pack
+      - name: Upload
+        uses: actions/upload-artifact@v2
+        with:
+            name: package
+            path: "package-version/*.tgz"
 
   publish-gpr:
     needs: build
