@@ -1,0 +1,22 @@
+{
+  "name": "@jtreie/package-version",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "exit 0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jtreie/package-version.git"
+  },
+  "author": "Johannes Treiel",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jtreie/package-version/issues"
+  },
+  "publishConfig": {
+    "@jtreie:registry": "https://npm.pkg.github.com"
+  },
+  "homepage": "https://github.com/jtreie/package-version#readme"
+}
