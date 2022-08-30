@@ -17,26 +17,15 @@ jobs:
       - run: npm ci
       - run: npm test
           
-  package:
-    defaults:
-      run:
-        working-directory: package-verstion
-    needs: [build]
-    runs-on: ubuntu latest
+  checkVersion:
+    name: Check package version
+    runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
+      - uses: actions/checkout@v2
+      - name: Check package version
+        uses: technote-space/package-version-check-action@v1
         with:
-          node-version: 12
-      - run: npm ci
-      - run: npm run build
-      - run: npm version prerelease --preid=ci-$GITHUB_RUN_ID --no-git-tag-version
-      - run: npm pack
-      - name: Upload
-        uses: actions/upload-artifact@v2
-        with:
-            name: package
-            path: "package-version/*.tgz"
+          BRANCH_PREFIX: release/
 
   publish-gpr:
     needs: build
