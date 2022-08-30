@@ -16,21 +16,11 @@ jobs:
           node-version: 12
       - name: Version Check
         uses: EndBug/version-check@v2.1.0
-
-
-  publish-package:
-    needs: package-nr
-    runs-on: ubuntu-latest
-    permissions:
-      packages: write
-      contents: read
-    steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
-        with:
-          node-version: 12
-          registry-url: https://npm.pkg.github.com/
-      - run: npm ci
-      - run: npm publish
+        
+      - name: Publish package to GPR
+        if: steps.check.outputs.changed == 'true'
+        run: npm publish
         env:
-          NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+
