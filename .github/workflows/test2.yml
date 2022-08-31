@@ -22,7 +22,7 @@ jobs:
       - name: Print version
         run: echo ${{ steps.package.outputs.version }}
       - name: gpr
-      - id: publish
+        id: publish
         uses: JS-DevTools/npm-publish@v1
         with:
           token: ${{ secrets.package }}
