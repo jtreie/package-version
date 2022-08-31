@@ -16,5 +16,8 @@ jobs:
         with:
           node-version: 12
       - run: npm ci
-      - name: Get current package version
-        uses: martinbeentjes/npm-get-version-action@v1.2.3
+      - name: Extract version
+        id: package
+        uses: Saionaro/extract-package-version@v1.1.1
+      - name: Print version
+        run: echo ${{ steps.package.outputs.version }}
