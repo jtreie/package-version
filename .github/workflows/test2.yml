@@ -21,3 +21,7 @@ jobs:
         uses: Saionaro/extract-package-version@v1.1.1
       - name: Print version
         run: echo ${{ steps.package.outputs.version }}
+      - name: GPR Publish
+        uses: JS-DevTools/npm-publish@v1
+        with:
+          token: ${{ secrets.NPM_TOKEN }}
