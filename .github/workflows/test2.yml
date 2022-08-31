@@ -22,8 +22,9 @@ jobs:
         id: package
         uses: Saionaro/extract-package-version@v1.1.1
       - name: Print version
-        run: echo ${{ steps.package.outputs.version }}
+        run: echo Version ${{ steps.package.outputs.version }}
       - name: gpr  
+        if: ${{ steps.package.outputs.version == 'true' }}
         run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
